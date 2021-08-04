@@ -1,0 +1,48 @@
+CREATE TABLE Empresa(
+	IdEmpresa TINYINT PRIMARY KEY IDENTITY(1,1),
+	NomeEmpresa VARCHAR(30),
+);
+GO
+
+
+CREATE TABLE Veiculo(
+	IdVeiculo TINYINT PRIMARY KEY IDENTITY(1,1),
+	IdEmpresa TINYINT FOREIGN KEY REFERENCES Empresa (idEmpresa),
+	Placa VARCHAR(30),
+);
+GO
+
+
+CREATE TABLE Modelo(
+	IdModelo TINYINT PRIMARY KEY IDENTITY(1,1),
+	IdVeiculo TINYINT FOREIGN KEY REFERENCES Veiculo (IdVeiculo),
+	NomeModelo VARCHAR(30),
+	AnoModelo VARCHAR(4),
+);
+GO
+
+
+CREATE TABLE Marca(
+	IdMarca TINYINT PRIMARY KEY IDENTITY(1,1),
+	IdModelo TINYINT FOREIGN KEY REFERENCES Modelo (IdModelo),
+	NomeMarca VARCHAR(30),
+);
+GO
+
+
+CREATE TABLE Cliente(
+	IdCliente TINYINT PRIMARY KEY IDENTITY(1,1),
+	NomeCliente VARCHAR(30),
+);
+GO
+
+
+CREATE TABLE Aluguel(
+	IdAluguel TINYINT PRIMARY KEY IDENTITY(1,1),
+	IdVeiculo TINYINT FOREIGN KEY REFERENCES Veiculo (IdVeiculo),
+	IdCliente TINYINT FOREIGN KEY REFERENCES Cliente (IdCliente),
+	NomeCliente VARCHAR(30),
+	Carro VARCHAR(30),
+	DataAluguel VARCHAR(8),
+);
+GO
